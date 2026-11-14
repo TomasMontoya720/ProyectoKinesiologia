@@ -1,0 +1,295 @@
+/* ==========================================================================
+   Estilos propios de KineTurnos. Bootstrap 5 aporta la base responsive.
+   ========================================================================== */
+
+:root {
+  --kine-primary: #0f766e;
+  --kine-primary-dark: #115e59;
+  --kine-accent: #14b8a6;
+  --kine-bg: #f3f7f8;
+  --kine-text: #1f2937;
+}
+
+body {
+  background-color: var(--kine-bg);
+  color: var(--kine-text);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* --------------------------------------------------------------------------
+   Barra de navegación y pie
+   -------------------------------------------------------------------------- */
+.bg-kine {
+  background: linear-gradient(135deg, var(--kine-primary-dark) 0%, var(--kine-primary) 100%);
+}
+
+.navbar-brand {
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+
+.brand-dot {
+  display: inline-block;
+  width: 0.65rem;
+  height: 0.65rem;
+  border-radius: 50%;
+  background: #5eead4;
+  margin-right: 0.4rem;
+}
+
+.navbar .nav-link {
+  font-weight: 500;
+}
+
+.navbar .nav-link.active {
+  color: #ffffff !important;
+  font-weight: 700;
+  border-bottom: 2px solid #5eead4;
+}
+
+.footer {
+  background: #ffffff;
+  color: #64748b;
+}
+
+/* --------------------------------------------------------------------------
+   Portada / hero
+   -------------------------------------------------------------------------- */
+.hero {
+  background: linear-gradient(135deg, #115e59 0%, #0f766e 55%, #0d9488 100%);
+  color: #ffffff;
+  border-radius: 1.25rem;
+  box-shadow: 0 18px 40px rgba(15, 118, 110, 0.25);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  right: -80px;
+  top: -80px;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.hero > * {
+  position: relative;
+  z-index: 1;
+}
+
+.hero .display-6 {
+  font-weight: 700;
+}
+
+/* --------------------------------------------------------------------------
+   Tarjetas y accesos rápidos
+   -------------------------------------------------------------------------- */
+.card {
+  border: 0;
+  border-radius: 1rem;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+}
+
+.stat-card {
+  height: 100%;
+}
+
+.stat-label {
+  color: #64748b;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.stat-number {
+  color: var(--kine-primary);
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.stat-number.stat-text {
+  font-size: 1.15rem;
+  line-height: 1.35;
+}
+
+.quick-card {
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  height: 100%;
+}
+
+.quick-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.12);
+}
+
+.quick-icon {
+  align-items: center;
+  background: #ccfbf1;
+  border-radius: 0.9rem;
+  color: var(--kine-primary-dark);
+  display: inline-flex;
+  font-size: 1.3rem;
+  font-weight: 700;
+  height: 3rem;
+  justify-content: center;
+  width: 3rem;
+}
+
+/* --------------------------------------------------------------------------
+   Botones con la identidad visual del sistema
+   -------------------------------------------------------------------------- */
+.btn-kine {
+  --bs-btn-color: #ffffff;
+  --bs-btn-bg: var(--kine-primary);
+  --bs-btn-border-color: var(--kine-primary);
+  --bs-btn-hover-color: #ffffff;
+  --bs-btn-hover-bg: var(--kine-primary-dark);
+  --bs-btn-hover-border-color: var(--kine-primary-dark);
+  --bs-btn-focus-shadow-rgb: 15, 118, 110;
+  --bs-btn-active-color: #ffffff;
+  --bs-btn-active-bg: var(--kine-primary-dark);
+  --bs-btn-active-border-color: var(--kine-primary-dark);
+}
+
+.btn-outline-kine {
+  --bs-btn-color: var(--kine-primary);
+  --bs-btn-border-color: var(--kine-primary);
+  --bs-btn-hover-color: #ffffff;
+  --bs-btn-hover-bg: var(--kine-primary);
+  --bs-btn-hover-border-color: var(--kine-primary);
+  --bs-btn-active-color: #ffffff;
+  --bs-btn-active-bg: var(--kine-primary);
+  --bs-btn-active-border-color: var(--kine-primary);
+}
+
+.btn-check:checked + .btn-outline-kine {
+  background-color: var(--kine-primary);
+  border-color: var(--kine-primary);
+  color: #ffffff;
+}
+
+/* --------------------------------------------------------------------------
+   Formularios
+   -------------------------------------------------------------------------- */
+.form-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.section-title {
+  color: var(--kine-primary);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--kine-accent);
+  box-shadow: 0 0 0 0.2rem rgba(20, 184, 166, 0.15);
+}
+
+.required-mark {
+  color: #dc3545;
+}
+
+/* --------------------------------------------------------------------------
+   Tablas
+   -------------------------------------------------------------------------- */
+.table thead th {
+  background: #f8fafc;
+  color: #64748b;
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.table tbody tr:hover {
+  background: #f0fdfa;
+}
+
+.table td,
+.table th {
+  vertical-align: middle;
+}
+
+.cell-main {
+  font-weight: 600;
+}
+
+.cell-sub {
+  color: #64748b;
+  font-size: 0.82rem;
+}
+
+/* --------------------------------------------------------------------------
+   Estados vacíos y tarjeta de ficha
+   -------------------------------------------------------------------------- */
+.empty-state {
+  color: #64748b;
+  padding: 2.5rem 1rem;
+  text-align: center;
+}
+
+.empty-state-icon {
+  font-size: 2rem;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.ficha-dato {
+  border-bottom: 1px dashed #e2e8f0;
+  padding: 0.65rem 0;
+}
+
+.ficha-dato:last-child {
+  border-bottom: 0;
+}
+
+.ficha-dato dt {
+  color: #64748b;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  margin-bottom: 0.15rem;
+  text-transform: uppercase;
+}
+
+.ficha-dato dd {
+  font-weight: 500;
+  margin-bottom: 0;
+  overflow-wrap: anywhere;
+}
+
+/* --------------------------------------------------------------------------
+   Impresión de la ficha del paciente
+   -------------------------------------------------------------------------- */
+@media print {
+  body {
+    background: #ffffff;
+  }
+
+  .navbar,
+  .footer,
+  .btn,
+  .no-print,
+  .toast-container {
+    display: none !important;
+  }
+
+  .card {
+    border: 1px solid #dee2e6;
+    box-shadow: none;
+  }
+
+  a[href]::after {
+    content: "";
+  }
+}

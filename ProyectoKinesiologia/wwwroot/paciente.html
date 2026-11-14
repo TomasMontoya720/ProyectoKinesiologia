@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>KineTurnos · Ficha del paciente</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="alternate icon" type="image/png" href="favicon.png">
+  <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+  <div class="d-flex flex-column min-vh-100">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-kine shadow-sm no-print">
+      <div class="container">
+        <a class="navbar-brand" href="index.html"><span class="brand-dot"></span>KineTurnos</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal"
+                aria-controls="menuPrincipal" aria-expanded="false" aria-label="Abrir menú">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="menuPrincipal">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+            <li class="nav-item"><a class="nav-link" href="turno-form.html">Agregar turno</a></li>
+            <li class="nav-item"><a class="nav-link active" aria-current="page" href="turnos.html">Ver turnos</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <main class="flex-grow-1">
+      <div class="container py-4">
+        <div class="d-flex flex-wrap gap-3 justify-content-between align-items-start mb-4">
+          <div>
+            <a href="turnos.html" class="small text-decoration-none no-print">&larr; Volver a los turnos</a>
+            <h1 class="h3 mt-2 mb-1">Ficha del paciente</h1>
+            <p class="text-muted mb-0" id="subtitulo-paciente">Datos de contacto y historial de turnos.</p>
+          </div>
+          <div class="d-flex gap-2 no-print">
+            <button type="button" class="btn btn-outline-secondary" id="btn-imprimir">Imprimir</button>
+            <a href="turnos.html" class="btn btn-kine">Ver agenda</a>
+          </div>
+        </div>
+
+        <div id="cargando-paciente" class="card mb-4">
+          <div class="card-body empty-state">Cargando ficha del paciente...</div>
+        </div>
+
+        <div id="error-paciente" class="alert alert-danger d-none" role="alert"></div>
+
+        <div id="contenido-paciente" class="d-none">
+          <div class="row g-4">
+            <div class="col-lg-5">
+              <div class="card h-100">
+                <div class="card-header bg-white border-0 pt-4 px-4">
+                  <h2 class="h5 mb-0" id="paciente-nombre">Paciente</h2>
+                  <div class="cell-sub" id="paciente-resumen">—</div>
+                </div>
+                <div class="card-body px-4">
+                  <dl class="mb-0">
+                    <div class="ficha-dato">
+                      <dt>Edad</dt>
+                      <dd id="paciente-edad">—</dd>
+                    </div>
+                    <div class="ficha-dato">
+                      <dt>Sexo</dt>
+                      <dd id="paciente-sexo">—</dd>
+                    </div>
+                    <div class="ficha-dato">
+                      <dt>Teléfono</dt>
+                      <dd id="paciente-telefono">—</dd>
+                    </div>
+                    <div class="ficha-dato">
+                      <dt>Patología</dt>
+                      <dd id="paciente-patologia">—</dd>
+                    </div>
+                    <div class="ficha-dato">
+                      <dt>Tipo de atención</dt>
+                      <dd id="paciente-modalidad">—</dd>
+                    </div>
+                    <div class="ficha-dato" id="fila-direccion">
+                      <dt>Dirección</dt>
+                      <dd id="paciente-direccion">—</dd>
+                    </div>
+                  </dl>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-7">
+              <div class="card h-100">
+                <div class="card-header bg-white border-0 pt-4 px-4 d-flex flex-wrap gap-2 justify-content-between align-items-center">
+                  <div>
+                    <h2 class="h5 mb-0">Historial de turnos</h2>
+                    <div class="cell-sub" id="resumen-historial">—</div>
+                  </div>
+                  <a href="turno-form.html" class="btn btn-sm btn-outline-kine no-print">+ Nuevo turno</a>
+                </div>
+                <div class="card-body p-0">
+                  <div class="table-responsive">
+                    <table class="table table-hover mb-0">
+                      <thead>
+                        <tr>
+                          <th>Fecha</th>
+                          <th>Hora</th>
+                          <th>Modalidad</th>
+                          <th>Estado</th>
+                          <th class="text-end no-print">Acciones</th>
+                        </tr>
+                      </thead>
+                      <tbody id="tabla-historial">
+                        <tr>
+                          <td colspan="5" class="empty-state">Cargando historial...</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer border-top py-3 mt-auto no-print">
+      <div class="container text-center small">
+        KineTurnos · Gestión de turnos de kinesiología
+      </div>
+    </footer>
+  </div>
+
+  <script src="lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script type="module" src="js/paciente.js"></script>
+</body>
+</html>

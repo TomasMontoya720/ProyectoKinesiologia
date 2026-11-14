@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>KineTurnos · Inicio</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="alternate icon" type="image/png" href="favicon.png">
+  <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+  <div class="d-flex flex-column min-vh-100">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-kine shadow-sm">
+      <div class="container">
+        <a class="navbar-brand" href="index.html"><span class="brand-dot"></span>KineTurnos</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal"
+                aria-controls="menuPrincipal" aria-expanded="false" aria-label="Abrir menú">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="menuPrincipal">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item"><a class="nav-link active" aria-current="page" href="index.html">Inicio</a></li>
+            <li class="nav-item"><a class="nav-link" href="turno-form.html">Agregar turno</a></li>
+            <li class="nav-item"><a class="nav-link" href="turnos.html">Ver turnos</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <main class="flex-grow-1">
+      <div class="container py-4">
+        <!-- Portada -->
+        <section class="hero p-4 p-md-5 mb-4">
+          <div class="row align-items-center g-4">
+            <div class="col-lg-8">
+              <span class="badge text-bg-light text-dark mb-3">Agenda de kinesiología</span>
+              <h1 class="display-6 mb-2">Tus turnos, siempre a mano.</h1>
+              <p class="lead mb-4 opacity-75">
+                Registrá pacientes, organizá la agenda del día y consultá la información en segundos.
+              </p>
+              <div class="d-flex flex-wrap gap-2">
+                <a href="turno-form.html" class="btn btn-light btn-lg fw-semibold">+ Agregar turno</a>
+                <a href="turnos.html" class="btn btn-outline-light btn-lg">Ver todos los turnos</a>
+              </div>
+            </div>
+            <div class="col-lg-4 text-lg-end">
+              <div class="d-inline-block bg-white bg-opacity-10 rounded-4 px-4 py-3 text-start">
+                <div class="small text-uppercase opacity-75">Hoy</div>
+                <div class="fs-4 fw-bold text-capitalize" id="fecha-hero">—</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Resumen del día -->
+        <div class="row g-3 mb-4">
+          <div class="col-md-4">
+            <div class="card stat-card">
+              <div class="card-body">
+                <div class="stat-label">Turnos de hoy</div>
+                <div class="stat-number" id="stat-hoy">—</div>
+                <div class="cell-sub">Turnos activos en la agenda</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card stat-card">
+              <div class="card-body">
+                <div class="stat-label">Pendientes de hoy</div>
+                <div class="stat-number" id="stat-pendientes">—</div>
+                <div class="cell-sub">Todavía no atendidos</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card stat-card">
+              <div class="card-body">
+                <div class="stat-label">Próximo turno</div>
+                <div class="stat-number stat-text" id="stat-proximo">—</div>
+                <div class="cell-sub" id="stat-proximo-detalle">Sin turnos pendientes por ahora</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Accesos rápidos -->
+        <div class="row g-3 mb-4">
+          <div class="col-md-4">
+            <a class="card quick-card text-decoration-none text-reset" href="turno-form.html">
+              <div class="card-body d-flex gap-3 align-items-start">
+                <span class="quick-icon">+</span>
+                <span>
+                  <span class="d-block fw-bold mb-1">Registrar un turno</span>
+                  <span class="cell-sub d-block">Cargá los datos del paciente y el horario en un solo formulario.</span>
+                </span>
+              </div>
+            </a>
+          </div>
+          <div class="col-md-4">
+            <a class="card quick-card text-decoration-none text-reset" href="turnos.html">
+              <div class="card-body d-flex gap-3 align-items-start">
+                <span class="quick-icon">≡</span>
+                <span>
+                  <span class="d-block fw-bold mb-1">Ver la agenda</span>
+                  <span class="cell-sub d-block">Filtrá por hoy, por fecha o buscá un paciente por nombre o teléfono.</span>
+                </span>
+              </div>
+            </a>
+          </div>
+          <div class="col-md-4">
+            <a class="card quick-card text-decoration-none text-reset" href="turnos.html?modo=hoy">
+              <div class="card-body d-flex gap-3 align-items-start">
+                <span class="quick-icon">◎</span>
+                <span>
+                  <span class="d-block fw-bold mb-1">Turnos de hoy</span>
+                  <span class="cell-sub d-block">Revisá la agenda del día y evitá que se acumulen pacientes.</span>
+                </span>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- Tabla resumen -->
+        <div class="card mb-4">
+          <div class="card-header bg-white border-0 pt-4 px-4 d-flex flex-wrap gap-2 justify-content-between align-items-center">
+            <div>
+              <h2 class="h5 mb-0">Agenda de hoy</h2>
+              <div class="cell-sub">Turnos registrados para la fecha</div>
+            </div>
+            <a href="turnos.html?modo=hoy" class="btn btn-sm btn-outline-kine">Ver todos</a>
+          </div>
+          <div class="card-body p-0">
+            <div class="table-responsive">
+              <table class="table table-hover mb-0">
+                <thead>
+                  <tr>
+                    <th>Paciente</th>
+                    <th>Hora</th>
+                    <th>Modalidad</th>
+                    <th>Estado</th>
+                  </tr>
+                </thead>
+                <tbody id="tabla-hoy">
+                  <tr>
+                    <td colspan="4" class="empty-state">Cargando turnos...</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer border-top py-3 mt-auto">
+      <div class="container text-center small">
+        KineTurnos · Gestión de turnos de kinesiología
+      </div>
+    </footer>
+  </div>
+
+  <script src="lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script type="module" src="js/inicio.js"></script>
+</body>
+</html>

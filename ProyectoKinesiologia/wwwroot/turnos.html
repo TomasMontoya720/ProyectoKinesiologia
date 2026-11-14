@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>KineTurnos · Turnos</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="alternate icon" type="image/png" href="favicon.png">
+  <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+  <div class="d-flex flex-column min-vh-100">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-kine shadow-sm">
+      <div class="container">
+        <a class="navbar-brand" href="index.html"><span class="brand-dot"></span>KineTurnos</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal"
+                aria-controls="menuPrincipal" aria-expanded="false" aria-label="Abrir menú">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="menuPrincipal">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+            <li class="nav-item"><a class="nav-link" href="turno-form.html">Agregar turno</a></li>
+            <li class="nav-item"><a class="nav-link active" aria-current="page" href="turnos.html">Ver turnos</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <main class="flex-grow-1">
+      <div class="container py-4">
+        <div class="d-flex flex-wrap gap-3 justify-content-between align-items-center mb-4">
+          <div>
+            <h1 class="h3 mb-1">Turnos</h1>
+            <p class="text-muted mb-0">Consultá, editá o cancelá los turnos de la agenda.</p>
+          </div>
+          <a href="turno-form.html" class="btn btn-kine px-3">+ Nuevo turno</a>
+        </div>
+
+        <!-- Filtros -->
+        <div class="card mb-4">
+          <div class="card-body">
+            <div class="row g-3 align-items-end">
+              <div class="col-lg-4">
+                <label class="form-label d-block">Período</label>
+                <div class="btn-group w-100" role="group" aria-label="Filtro de período">
+                  <input type="radio" class="btn-check" name="modo" id="modo-todos" value="todos" checked>
+                  <label class="btn btn-outline-kine" for="modo-todos">Todos</label>
+
+                  <input type="radio" class="btn-check" name="modo" id="modo-hoy" value="hoy">
+                  <label class="btn btn-outline-kine" for="modo-hoy">Hoy</label>
+
+                  <input type="radio" class="btn-check" name="modo" id="modo-fecha" value="fecha">
+                  <label class="btn btn-outline-kine" for="modo-fecha">Por fecha</label>
+                </div>
+              </div>
+
+              <div class="col-sm-6 col-lg-3">
+                <label for="filtro-fecha" class="form-label">Fecha</label>
+                <input type="date" id="filtro-fecha" class="form-control" disabled>
+              </div>
+
+              <div class="col-sm-6 col-lg-2">
+                <label for="filtro-estado" class="form-label">Estado</label>
+                <select id="filtro-estado" class="form-select">
+                  <option value="">Todos</option>
+                  <option value="Pendiente">Pendiente</option>
+                  <option value="Cancelado">Cancelado</option>
+                </select>
+              </div>
+
+              <div class="col-lg-3">
+                <label for="filtro-buscar" class="form-label">Buscar paciente</label>
+                <input type="search" id="filtro-buscar" class="form-control"
+                       placeholder="Nombre, teléfono o patología">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Listado -->
+        <div class="card">
+          <div class="card-header bg-white border-0 pt-4 px-4 d-flex flex-wrap gap-2 justify-content-between align-items-center">
+            <div>
+              <h2 class="h5 mb-0" id="titulo-listado">Todos los turnos</h2>
+              <div class="cell-sub" id="resumen-turnos">Cargando turnos...</div>
+            </div>
+            <button type="button" class="btn btn-sm btn-outline-secondary" id="btn-actualizar">Actualizar</button>
+          </div>
+          <div class="card-body p-0">
+            <div class="table-responsive">
+              <table class="table table-hover mb-0">
+                <thead>
+                  <tr>
+                    <th>Paciente</th>
+                    <th>Patología</th>
+                    <th>Fecha</th>
+                    <th>Hora</th>
+                    <th>Modalidad</th>
+                    <th>Estado</th>
+                    <th class="text-end">Acciones</th>
+                  </tr>
+                </thead>
+                <tbody id="tabla-turnos">
+                  <tr>
+                    <td colspan="7" class="empty-state">Cargando turnos...</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer border-top py-3 mt-auto">
+      <div class="container text-center small">
+        KineTurnos · Gestión de turnos de kinesiología
+      </div>
+    </footer>
+  </div>
+
+  <!-- Confirmación de cancelación -->
+  <div class="modal fade" id="modal-cancelar" tabindex="-1" aria-labelledby="modal-cancelar-titulo" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title fs-5" id="modal-cancelar-titulo">Cancelar turno</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body">
+          <p class="mb-2">¿Confirmás la cancelación del turno de <strong id="cancelar-nombre"></strong>?</p>
+          <p class="text-muted small mb-0">El turno quedará registrado con estado <strong>Cancelado</strong> para conservar el historial.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Volver</button>
+          <button type="button" class="btn btn-danger" id="btn-confirmar-cancelar">Sí, cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script type="module" src="js/turnos.js"></script>
+</body>
+</html>

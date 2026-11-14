@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="ProyectoKine.BD/ProyectoKine.BD.csproj" />
+  <Project Path="ProyectoKine.Repositorio/ProyectoKine.Repositorio.csproj" />
+  <Project Path="ProyectoKine.Servicio/ProyectoKine.Servicio.csproj" />
+  <Project Path="ProyectoKine.Shared/ProyectoKine.Shared.csproj" />
+  <Project Path="ProyectoKinesiologia/ProyectoKinesiologia.Server.csproj" />
+</Solution>
